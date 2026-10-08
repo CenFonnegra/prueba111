@@ -2,7 +2,7 @@
 graph LR
     User((Usuario / Viajero))
 
-    subgraph Sistema ArcoPay
+    subgraph Sistema Arcoins
         UC1[Registrarse e Iniciar Sesión]
         UC2[Consultar Saldos Multidivisa COP/USD/EUR]
         UC3[Comprar, Vender e Intercambiar Monedas]
