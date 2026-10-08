@@ -1,3 +1,4 @@
+```mermaid
 graph LR
     User((Usuario / Viajero))
 
@@ -18,4 +19,3 @@ graph LR
     User --> UC5
     User --> UC6
     User --> UC7
-    
