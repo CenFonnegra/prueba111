@@ -1,15 +1,21 @@
-```mermaid
 erDiagram
     USERS {
         uuid id PK
+        string name
         string email
         string password_hash
         timestamp created_at
     }
 
-    WALLET_BALANCES {
+    WALLETS {
         uuid id PK
         uuid user_id FK
+        timestamp created_at
+    }
+
+    WALLET_BALANCES {
+        uuid id PK
+        uuid wallet_id FK
         string currency
         numeric amount
     }
@@ -28,7 +34,7 @@ erDiagram
         timestamp created_at
     }
 
-    EXCHANGE_RATE_CACHE {
+    EXCHANGE_RATES {
         uuid id PK
         string base_currency
         string target_currency
@@ -36,5 +42,6 @@ erDiagram
         timestamp fetched_at
     }
 
-    USERS ||--o{ WALLET_BALANCES : "posee"
+    USERS ||--o{ WALLETS : "posee"
+    WALLETS ||--o{ WALLET_BALANCES : "contiene"
     USERS ||--o{ TRANSACTIONS : "ejecuta"
