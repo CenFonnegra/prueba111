@@ -1,0 +1,40 @@
+```mermaid
+erDiagram
+    USERS {
+        uuid id PK
+        string email UK
+        string password_hash
+        timestamp created_at
+    }
+
+    WALLET_BALANCES {
+        uuid id PK
+        uuid user_id FK
+        string currency "COP, USD, EUR"
+        numeric amount "NUMERIC(20,8)"
+    }
+
+    TRANSACTIONS {
+        uuid id PK
+        uuid user_id FK
+        string type "compra, venta, intercambio"
+        string from_currency
+        string to_currency
+        numeric from_amount "NUMERIC(20,8)"
+        numeric to_amount "NUMERIC(20,8)"
+        numeric rate_used
+        timestamp rate_timestamp
+        string status "completed, failed"
+        timestamp created_at
+    }
+
+    EXCHANGE_RATE_CACHE {
+        uuid id PK
+        string base_currency
+        string target_currency
+        numeric rate
+        timestamp fetched_at
+    }
+
+    USERS ||--o{ WALLET_BALANCES : "posee saldos en"
+    USERS ||--o{ TRANSACTIONS : "ejecuta"
